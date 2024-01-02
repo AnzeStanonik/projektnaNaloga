@@ -23,7 +23,7 @@ public class DinamicnoIzvajanje {
         if (dosegljivost == true) {
             return "dosegljiv";
         }else  {
-            return "nedosegljiv";
+            return "\\";
         }
     }
 

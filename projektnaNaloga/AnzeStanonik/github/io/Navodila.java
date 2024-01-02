@@ -18,10 +18,6 @@ public final class Navodila {
         System.out.println("Prosimo vnesite ime datoteke, v katero bi radi pisali. Ne pozabite na koncico!");
     }
 
-    public static void navodilaSpreminjanja() {
-        System.out.println("Ce zelite izbrisati vrednosti obtojece datoteke prosim vnesite: ja \nv drugacnem primeru vnesite: ne");
-    }
-
     public static void opozoriloPredcasneZaustavitve() {
         System.out.println("Prosim pocakajte, da se izpisejo vsi IP naslovi, \ndrugace se podatki ne bodo shranili v ustvarjeno datoteko.");
     }

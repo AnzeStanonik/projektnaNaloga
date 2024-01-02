@@ -11,7 +11,7 @@ import java.nio.file.NoSuchFileException;
 import java.net.*;
 import projektnaNaloga.AnzeStanonik.github.io.nacinIzvedbe.*;
 
-public class Vhod{ 
+public class Vhod extends Thread{ 
     public static void main(String[] args) throws UnknownHostException, IOException{ 
 
         Scanner sc = new Scanner(System.in);
@@ -23,10 +23,11 @@ public class Vhod{
         if(nacinIzvedbe == 1) { 
             Navodila.navodilaDinamicnegaIzvajanja();
             String prvaTretjinaBitov = sc.next();
+            prvaTretjinaBitov = "192.168.8.";
 
             Navodila.navodilaPisanja();
             String imeDatoteke = sc.next();
-            Path pot = FileSystems.getDefault().getPath("io\\github\\AnzeStanonik\\projektnaNaloga\\omrezja", imeDatoteke);
+            Path pot = FileSystems.getDefault().getPath("projektnaNaloga/AnzeStanonik/github/io/omrezja", imeDatoteke);
             PrintWriter pw = new PrintWriter(pot.toString(), StandardCharsets.UTF_8.toString());
 
             Navodila.opozoriloPredcasneZaustavitve();
@@ -36,18 +37,18 @@ public class Vhod{
 
             IPnaslovi.add(i, ip);
             String csv = "\",\"";
-            pw.println("\"" + IPnaslovi.get(i) + csv + DinamicnoIzvajanje.getDosegljivost() + csv + "\"");
+            pw.println("\"" + IPnaslovi.get(i) + csv + DinamicnoIzvajanje.getDosegljivost() + csv);
             }
-
             pw.close();
+             
 
         }else if (nacinIzvedbe == 2) {
             Navodila.navodilaBranja();
             String imeDatoteke = sc.next();
             try {
-                Path pot = FileSystems.getDefault().getPath("io\\github\\AnzeStanonik\\projektnaNaloga\\omrezja", imeDatoteke);
+                Path pot = FileSystems.getDefault().getPath("projektnaNaloga/AnzeStanonik/github/io/omrezja", imeDatoteke);
                 BufferedReader br = Files.newBufferedReader(pot, StandardCharsets.UTF_8);
-                
+    
                 if (br.ready()) {
                     String vrstica = null;
                     int i = 0;
@@ -59,19 +60,7 @@ public class Vhod{
                 }
 
                 br.close();
-                
-                Navodila.navodilaSpreminjanja();
-                String pisanje = sc.next();
 
-                if (pisanje.equals("ja")) {
-                    PrintWriter pw = new PrintWriter(pot.toString(), StandardCharsets.UTF_8.toString());
-
-                }else if(pisanje.equals("ne")) {
-
-                }else {
-                    System.out.println("Prosim vnesite \"ja\", oz. \"ne\"");
-                }
-            
             }catch (NoSuchFileException f){
                 Izjeme.datotekeNiMoznoNajti();
             }
@@ -79,7 +68,6 @@ public class Vhod{
         }else {
             System.out.println("Prosim vnesite pravilne podatke!");
         }
-
         sc.close();
     }
 }
